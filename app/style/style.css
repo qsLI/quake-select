@@ -1,47 +1,91 @@
-body {
-  margin: 0;
-  padding: 0;
-  padding-top: 60px;
-}
-
-body, input {
-  font-family: "Source Sans Pro", sans-serif;
-}
-
-div,
-button {
-  box-sizing: border-box;
-}
-
-.prepend-mag {
-  position: fixed;
-  z-index: 2;
-  top: 15px;
-  left: 15px;
-  font-family: AppleColorEmoji;
-}
-
-.search {
-  padding: 20px 10px 20px 35px;
-  font-size: 14px;
+.header{
   width: 100%;
+  height: 44px;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index:1;
+  border-bottom: 1px solid #e7e7e7;
+  box-shadow: 1px 2px 4px #ccc;
+}
+.header .h_main{
+  width: 100%;
+  height: 44px;
+  position: relative;
+}
+.search {
+  width: 100%;
+  display: inline-block;
+  height: 44px;
+  line-height: 44px;
+  font-size: 14px;
   border: 0;
   background: #f7f7f7;
   border-bottom: 1px solid #f0f0f0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
+  font-family: Helvetica,  "Microsoft YaHei Light";
+  padding-left: 36px;
   -webkit-appearance: textfield;
 }
+.prepend-mag {
+  position: absolute;
+  font-family: Helvetica,  "Microsoft YaHei Light";
+  padding-left: 8px;
+  line-height: 44px;
+}
+
 
 .search:focus {
   background: #fff;
   outline: none;
 }
 
+.main-wrapper{
+  background-color: #f3f3f3;
+  padding-top: 40px;
+}
+
 .results {
   height: 100%;
+  background-color: #fff;
   position: relative;
+}
+
+.result-container{
+  width: 100%;
+ 
+}
+.bottom-line{
+   border-bottom: 1px solid #ccc;
+}
+.bottom-line:last-child{
+  border-bottom: 0;
+}
+
+.result-detail{
+  width: 100%;
+  height: 44px;
+}
+
+.detail-text{
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
+  font-family: Helvetica,  "Microsoft YaHei Light";
+  font-size: 14px;
+  outline: none;
+  border: 0;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.result-info{
+  display: none;
+  padding: 12px 8px 12px 8px;
+}
+.result-info>p{
+  font-size: 12px;
+  color: #868f9a;
 }
 
 .code {
@@ -59,9 +103,9 @@ button {
   border-color: #08c;
 }
 
-.emoji {
-  overflow: hidden;
-  /*float: left;*/
+/* .emoji {
+  /* overflow: hidden;
+  /*float: left;
   padding: 10px;
   width: 100%;
   height: 50px;
@@ -72,7 +116,11 @@ button {
   border: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: nowrap; 
+} */
+.emoji:focus{
+  background-color: #08c;
+  border-color: #08c;
 }
 
 .on-preference {

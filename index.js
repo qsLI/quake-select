@@ -14,7 +14,7 @@ var mb = menubar({
 
 mb.on('show', function () {
   mb.window.webContents.send('show')
-  // mb.window.openDevTools()
+  mb.window.openDevTools()
 })
 
 mb.app.on('will-quit', function () {

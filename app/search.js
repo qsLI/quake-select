@@ -131,14 +131,19 @@ function renderResults (itemArray, containerElement) {
   containerElement.innerHTML = ''
   var fragment = document.createDocumentFragment()
   itemArray.forEach(function (item) {
-    var resultElement = document.createElement('button')
-    resultElement.type = 'button'
-    resultElement.className = 'emoji'
-    resultElement.setAttribute('aria-label', item)
-    resultElement.textContent = item
+    var resultElement = document.createElement('div')
+    var html = 
+      `<div class="result-container">
+            <div class="result-detail">
+                <button type="button" class="detail-text emoji">${item} chrome</button>
+            </div>
+            <div class="result-info">
+                <p>${item}</p>
+            </div>
+        </div>`
+    resultElement.classList.add('bottom-line')    
+    resultElement.innerHTML = html
     fragment.appendChild(resultElement)
-    var hr = document.createElement('hr')
-    fragment.appendChild(hr)
   })
   containerElement.appendChild(fragment)
 }
@@ -180,7 +185,7 @@ function jumpto (destination) {
   var all = document.getElementsByClassName('emoji')
   var focusedElement = document.querySelector('.emoji:focus')
   var nodeIndex = Array.prototype.indexOf.call(all, focusedElement)
-  var resultPerRow = Math.floor(container.clientWidth / all[0].clientWidth)
+  var resultPerRow = 1
   var resultPerCol = Math.floor(container.clientHeight / all[0].clientHeight)
   var newTarget
 
@@ -222,6 +227,9 @@ function jumpto (destination) {
   if (newTarget >= all.length - 1) newTarget = all.length - 1
   if (all[newTarget]) {
     all[newTarget].focus()
+    if(focusedElement){
+      all[newTarget].parentNode.nextSibling.nextSibling.style.display = 'block'
+    }
     all[newTarget].scrollIntoViewIfNeeded()
   } else {
     searchInput.focus()
