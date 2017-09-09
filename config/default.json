@@ -1,14 +1,9 @@
 {
-  "commands" : [
-    "tail -f qta.log | perl -pe 's/(ERROR|param|query|date)/\\e[1;31m$1\\e[0m/g, s/(WARN|seq)/\\e[2;93m$1\\e[0m/g, s/(INFO)/\\e[1;34m$1\\e[0m/g, s/(OTHER|twid)/\\e[1;34m$1\\e[0m/g'",
-    "curl -s  | python -m json.tool | ascii2uni -a U -q",
-    "curl -X POST  -H  'Content-Type: application/json'  -d '{\"orderQuery\" : {}, \"sectionQuery\": {}}'  localhost:9120/baby/price/query",
-    "sudo -u tomcat jinfo  -flag  `pgrep -f 'tomcat'`",
-"pgrep -f 'quake-select'  | xargs kill",
-"export CATALINA_OPTS=\"-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=9005\"",
-"atnodes 'grep /home/q/www/hprice-galaxy/logs/access.2017-06-27.log'  l-hgalaxy[1-30].h.cn2 ",
-"pidstat -p `sudo -u tomcat jps -l | grep Bootstrap | awk '{print $1}'` -t -u 1 3",
-"pidstat -p `sudo -u tomcat jps -l | grep Bootstrap | awk '{print $1}'` -t -d 1 3",
-"pidstat -p `sudo -u tomcat jps -l | grep Bootstrap | awk '{print $1}'` -t -r 1 3"
+  "commands": [
+    {
+      "desc": "远程debug",
+      "command": "socat TCP4-LISTEN:5005forkrange=100.80.0.0/16 TCP4:127.0.0.1:9123  | hostname -i ",
+      "tag": "debug"
+    }
   ]
 }

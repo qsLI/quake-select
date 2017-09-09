@@ -6,7 +6,7 @@ var searchInput = document.querySelector('.js-search')
 
 var allItems = config.get("commands")
 
-console.log(allItems)
+// console.log(allItems)
 
 
 var directions = {
@@ -116,7 +116,7 @@ function search (query) {
       results = allItems
     } else {
       allItems.forEach(function matchQuery (keyword) {
-        if (stringIncludes(keyword, query)) {
+        if (stringIncludes(keyword.command, query) || stringIncludes(keyword.tag, query)) {
           results.push(keyword)
         }
       })
@@ -135,14 +135,28 @@ function renderResults (itemArray, containerElement) {
     var html = 
       `<div class="result-container">
             <div class="result-detail">
-                <button type="button" class="detail-text emoji">${item} chrome</button>
+                <button type="button" class="detail-text emoji">${item.command}</button>
             </div>
             <div class="result-info">
-                <p>${item}</p>
+                <p>${item.desc}</p>
+                <p><span class="fa fa-tags" style="color:green"></span> ${item.tag}</p>
             </div>
         </div>`
     resultElement.classList.add('bottom-line')    
     resultElement.innerHTML = html
+    var button = resultElement.querySelector('button')
+    button.onfocus = function () {
+      console.log('on focus')
+      this.parentNode.nextSibling.nextSibling.style.display = 'block'
+      this.scrollIntoViewIfNeeded()
+    }
+
+    button.onblur = function () {
+      console.log('on blur')
+      this.parentNode.nextSibling.nextSibling.style.display = 'none'
+      this.scrollIntoViewIfNeeded()      
+    }
+
     fragment.appendChild(resultElement)
   })
   containerElement.appendChild(fragment)
@@ -228,7 +242,8 @@ function jumpto (destination) {
   if (all[newTarget]) {
     all[newTarget].focus()
     if(focusedElement){
-      all[newTarget].parentNode.nextSibling.nextSibling.style.display = 'block'
+      // all[newTarget].parentNode.nextSibling.nextSibling.style.display = 'block'
+      // focusedElement
     }
     all[newTarget].scrollIntoViewIfNeeded()
   } else {
