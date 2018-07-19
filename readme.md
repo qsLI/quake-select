@@ -11,3 +11,5 @@ Support quick call out, search, select and copy to clipboard.
 The item is configurable in config default.json.
 
 Enjoy this cheatsheet!
+
+![qukae.png](quake.png)
